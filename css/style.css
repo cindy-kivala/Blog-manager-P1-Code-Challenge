@@ -1,0 +1,40 @@
+body {
+    background: thistle;
+h1 {
+    display: flex;
+    justify-content: center;
+    color: rgb(196, 125, 99);
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+#directory {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+
+}
+#blog-container-left {
+    width: 38%;
+    padding: 20px;
+    background-color: rgb(253, 215, 201);
+    border-radius: 20px;
+    margin: 20px;
+}
+h2 {
+    display: flex;
+    justify-content: center;
+}
+h3 {
+    justify-content: center;
+    display: flex;
+}
+#load-more-button {
+    display: flex;
+    justify-items: center;
+    align-content: center;
+    background-color: rgb(247, 187, 165);
+    color: black;
+    border-radius: 20px;
+    padding: 1.5%;
+    cursor: pointer;
+}
+}

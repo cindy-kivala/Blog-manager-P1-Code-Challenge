@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "UTF-8">
+        <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+        <link rel ="stylesheet" href="css/style.css" type = "text/css">
+    </head>
+    <body>
+        <header>
+            <h1>Blog Manager</h1>
+            <nav id="directory">
+                <ul>
+                    <li><a href="">Home</a></li>
+                    <li><a href="">Posts</a></li>
+                    <li><a href="">Categories</a></li>
+                    <li><a href="">Settings</a></li>
+                    <li><a href="">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+    <main>
+        <div id="blog-container-left">
+            <h2>Your Latest Posts</h2>
+            <!--Post List -->
+            <ul id="post-list"></ul>
+
+            <div id="load more">
+                <button id="load-more-button">Load More Posts</button>
+            </div>
+        </div>
+    </main>
+    
+     <script src = "./src/blog.js"></script>
+ </body>
+</html>
