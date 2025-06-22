@@ -27,6 +27,19 @@ h3 {
     justify-content: center;
     display: flex;
 }
+#post-list li {
+    margin-bottom: 20px;
+    list-style: none;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+#post-list img {
+    max-width: 100px;
+    border-radius: 5px;
+}
 #load-more-button {
     display: flex;
     justify-items: center;
@@ -37,4 +50,31 @@ h3 {
     padding: 1.5%;
     cursor: pointer;
 }
+#new-post-form {
+    display: block
+    margin: 20px;
+    margin-left: 15px;
+    height: 600px;
+    padding: 20px;
+    border-radius: 20px;
+    width: 38%;
+    background-color: rgb(253, 215, 201);
+}
+#content {
+    display: block;
+    margin: 40px;
+    height: 440px;
+    width: 80%;
+}
+#new-post-form-submit-button { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(247, 187, 165);
+    color:black;
+    border-radius: 20px;
+    padding: 1.5%;
+    cursor: pointer;
+}
+
 }

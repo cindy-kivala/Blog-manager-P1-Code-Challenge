@@ -18,18 +18,26 @@
                 </ul>
             </nav>
         </header>
-    <main>
         <div id="blog-container-left">
             <h2>Your Latest Posts</h2>
             <!--Post List -->
             <ul id="post-list"></ul>
 
-            <div id="load more">
+            <div id="post-detail"></div>
+
+            <div id="load-more">
                 <button id="load-more-button">Load More Posts</button>
             </div>
         </div>
-    </main>
-    
+        <form id="new-post-form">
+             <input type="text" id="title" placeholder="Title" required>
+             <input type="text" id="author" placeholder="Author" required><br>
+             <input type="text" id="image" placeholder="Image URL" required><br>              
+             <textarea id="content" placeholder="Write your post here..." required></textarea><br>
+            <button type="submit">Add post</button>
+         </form>
+      </div>
+
      <script src = "./src/blog.js"></script>
  </body>
 </html>
