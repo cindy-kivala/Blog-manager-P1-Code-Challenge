@@ -6,37 +6,54 @@
         <link rel ="stylesheet" href="css/style.css" type = "text/css">
     </head>
     <body>
-        <header>
-            <h1>Blog Manager</h1>
-            <nav id="directory">
-                <ul>
-                    <li><a href="">Home</a></li>
-                    <li><a href="">Posts</a></li>
-                    <li><a href="">Categories</a></li>
-                    <li><a href="">Settings</a></li>
-                    <li><a href="">Contact</a></li>
-                </ul>
-            </nav>
-        </header>
-        <div id="blog-container-left">
-            <h2>Your Latest Posts</h2>
-            <!--Post List -->
-            <ul id="post-list"></ul>
-
-            <div id="post-detail"></div>
-
-            <div id="load-more">
-                <button id="load-more-button">Load More Posts</button>
-            </div>
+        <div class="disney-container">
+   <!-- Add Post Form -->
+    <section class="add-post">
+      <form id="new-post-form">
+        <input type="text" id="title" placeholder="Title" required />
+        <input type="text" id="author" placeholder="Author" required /><br />
+        <input type="text" id="image" placeholder="Image URL" required /><br />
+        <textarea id="content" placeholder="Write your post here..." required></textarea><br />
+        <div class="form-actions">
+          <button type="submit">Add post</button>
+          <button type="button" onclick="resetForm()">Cancel</button>
         </div>
-        <form id="new-post-form">
-             <input type="text" id="title" placeholder="Title" required>
-             <input type="text" id="author" placeholder="Author" required><br>
-             <input type="text" id="image" placeholder="Image URL" required><br>              
-             <textarea id="content" placeholder="Write your post here..." required></textarea><br>
-            <button type="submit">Add post</button>
-         </form>
+      </form>
+    </section>
+
+  <!-- Post Details -->
+  <section class="disney-details">
+    <!-- Post List of all articles -->
+    <ul id="post-list"></ul>
+    <!-- Post View of single post-->
+    <div id="postView">
+      <div class="post-header">
+        <h2 id="postTitle">Title Here</h2>
+        <div class="meta">
+          By <span id="postAuthor">Author Name</span> - <span id="postDate">Date</span>
+        </div>
+        <div id="Post-Actions">
+          <button id="editPostBtn">Edit</button>
+          <button class="erase" id="deletePostBtn">Delete</button>
+        </div>
       </div>
+      <img id="postImage" src="" alt="Post Image" />
+      <p id="postContent">Post Content Here</p>
+    </div>
+
+    <!-- Edit Post Form -->
+    <form id="editForm" style="display:none;">
+      <input type="text" id="editTitle" placeholder="Title" required>
+      <input type="text" id="editAuthor" placeholder="Author" required><br>
+      <input type="text" id="editImage" placeholder="Image URL" required><br>              
+      <textarea id="editContent" placeholder="Write your post here..." required></textarea><br>
+      <div class="form-actions">
+        <button type="submit">Save Changes</button>
+        <button type="button" id="cancelEdit()">Cancel</button>
+      </div>
+    </form>
+  </section>
+</div>
 
      <script src = "./src/blog.js"></script>
  </body>

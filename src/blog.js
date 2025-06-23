@@ -1,5 +1,7 @@
 //index js
 //MAIN
+//const API_URL = 'https://api.disneyapi.dev/character';
+const API_URL = 'http://localhost:3000/'
 function main() {
     displayPosts();
     addNewPostListener();
@@ -8,13 +10,53 @@ function main() {
 
 function displayPosts() {
     console.log("Displaying all blog posts...");
-    // code to fetch and display blog posts
+    fetch(`${API_URL}/posts`)
+        .then(response => response.json())
+        .then(posts => {
+            const postList = document.querySelector('#post-list');
+            postList.innerHTML = ''; // clear existing posts
+
+            posts.forEach(post => {
+                const postItem = document.createElement('li');
+                postItem.classList.add('post-item');
+
+                // Create and set the post title
+                const postTitle = document.createElement('h3');
+                postTitle.textContent = post.title;
+
+                // Create and set the post content
+                const content = document.createElement('p');
+                content.textContent = post.content;
+
+                // Create and set the post image
+                const postImage = document.createElement('img');
+                postImage.src = post.image;
+                postImage.alt = post.title;
+                postImage.style.maxWidth = '100px'; //CONFIRM OPTIMAL WIDTH
+
+                // Append each element
+                postItem.appendChild(postTitle);
+                postItem.appendChild(content);
+                postItem.appendChild(postImage);
+
+                // Click listener to trigger handlePostClick
+                postItem.addEventListener('click', () => {
+                    handlePostClick(post.id);
+                });
+
+                // Add to the post list
+                postList.appendChild(postItem);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching posts:', error);
+        });
 }
-function addNewPostListener() {
-    console.log("Setting up new post listener...");
-    const form = document.querySelector('#new-post-form');
-    //code to listen for new post submissions
-}
+// function addNewPostListener() {
+//     console.log("Setting up new post listener...");
+//     const form = document.querySelector('#new-post-form');
+//     //code to listen for new post submissions
+// }
 
 document.addEventListener('DOMContentLoaded', main); //TEST IT
 // Call main() to run the app
@@ -92,14 +134,14 @@ function displayPosts() {
         const form = document.querySelector('#new-post-form');
          
         if (!form) {
-            console.error('#neq-poat-form not found in the document');
+            console.error('#new-post-form not found in the document');
             return;
         }
 
         form.addEventListener('submit', (event) => {
             event.preventDefault(); //Prevent the default form submission behavior
             
-        //4. EXTRATC INPUT VALUES
+        //4. EXTRACT INPUT VALUES
             const newPost = {
                 title: document.querySelector('#title').value,
                 author: document.querySelector('#author').value,
@@ -116,40 +158,46 @@ function displayPosts() {
             })
             .then(response => response.json())
             .then(createdPost => {
-                displayPosts();
-                form.requestFullscreen();
+                displayPosts(); ///reload the list
+                form.reset(); //clear the form inputs
             })
             .catch(error => {
                 console.error('Error adding post:', error);
             });
         });
     }
+    //crate a post object
+        //    const newPost = {
+        //     title: title,
+        //     content: content,
+        //     createdAt: new Date().toISOString()
+        //    };
             //add post to UI
-             // const postList = document.querySelector('#post-list');
-              //const postItem = document.createElement('li');
-              //const title = document.createElement('h3');
-              //title.textContent = createdPost.title;
+             const postList = document.querySelector('#post-list');
+              const postItem = document.createElement('li');
+              const title = document.createElement('h3');
+              title.textContent = createdPost.title;
 
-              //const content = document.createElement('p');
-              //content.textContent = createdPost.content;
+              const content = document.createElement('p');
+              content.textContent = createdPost.content;
 
-             // const image = document.createElement('img');
-             // image.src = createdPost.image;
-              //image.alt = createdPost.title;
-              //image.style.maxWidth = '100px';
+             const image = document.createElement('img');
+             image.src = createdPost.image;
+              image.alt = createdPost.title;
+              image.style.maxWidth = '100px';
 
-              //append new post
-             // postItem.appendChild(title);
-             // postItem.appendChild(content);
-             // postItem.appendChild(image);
+             // append new post
+             postItem.appendChild(title);
+             postItem.appendChild(content);
+             postItem.appendChild(image);
 
-              //click listener to view full post
-              //postItem.addEventListener('click', () => {
-              //  handlePostClick(createdPost.id);
-              //});
+              // listener to view full post
+              postItem.addEventListener('click', () => {
+               handlePostClick(createdPost.id);
+              });
 
-             // postList.appendChild(postItem);
+             postList.appendChild(postItem);
 
-              //reset form
+              resetForm();
               
     
