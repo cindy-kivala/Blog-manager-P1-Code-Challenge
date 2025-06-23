@@ -52,73 +52,69 @@ function displayPosts() {
             console.error('Error fetching posts:', error);
         });
 }
-// function addNewPostListener() {
-//     console.log("Setting up new post listener...");
-//     const form = document.querySelector('#new-post-form');
-//     //code to listen for new post submissions
+
+//document.addEventListener('DOMContentLoaded', main); //TEST IT
+// // Call main() to run the app
+// main();
+// //Wait for the DOM to load before runnning the main function
+// document.addEventListener("DOMContentLoaded", main);
+
+// //displayPosts
+// function displayPosts() {
+//     console.log("Displaying all blog posts...");
+//     fetch('http://localhost:3000/posts')
+//         .then(response => response.json())
+//         .then(posts => {
+//             const postList = document.querySelector('#post-list');
+//             postList.innerHTML = ''; // clear existing posts
+
+//             posts.forEach(post => {
+//                 const postItem = document.createElement('li');
+//                 postItem.classList.add('post-item');
+
+//                 // Create and set the post title
+//                 const postTitle = document.createElement('h3');
+//                 postTitle.textContent = post.title;
+
+//                 // Create and set the post content
+//                 const content = document.createElement('p');
+//                 content.textContent = post.content;
+
+//                 // Create and set the post image
+//                 const postImage = document.createElement('img');
+//                 postImage.src = post.image;
+//                 postImage.alt = post.title;
+//                 postImage.style.maxWidth = '100px'; //CONFIRM OPTIMAL WIDTH
+
+//                 // Append each element
+//                 postItem.appendChild(postTitle);
+//                 postItem.appendChild(content);
+//                 postItem.appendChild(postImage);
+
+//                 // Click listener to trigger handlePostClick
+//                 postItem.addEventListener('click', () => {
+//                     handlePostClick(post.id);
+//                 });
+
+//                 // Add to the post list
+//                 postList.appendChild(postItem);
+//             });
+//         })
+//         .catch(error => {
+//             console.error('Error fetching posts:', error);
+//         });
 // }
-
-document.addEventListener('DOMContentLoaded', main); //TEST IT
-// Call main() to run the app
-main();
-//Wait for the DOM to load before runnning the main function
-document.addEventListener("DOMContentLoaded", main);
-
-//displayPosts
-function displayPosts() {
-    console.log("Displaying all blog posts...");
-    fetch('http://localhost:3000/posts')
-        .then(response => response.json())
-        .then(posts => {
-            const postList = document.querySelector('#post-list');
-            postList.innerHTML = ''; // clear existing posts
-
-            posts.forEach(post => {
-                const postItem = document.createElement('li');
-                postItem.classList.add('post-item');
-
-                // Create and set the post title
-                const postTitle = document.createElement('h3');
-                postTitle.textContent = post.title;
-
-                // Create and set the post content
-                const content = document.createElement('p');
-                content.textContent = post.content;
-
-                // Create and set the post image
-                const postImage = document.createElement('img');
-                postImage.src = post.image;
-                postImage.alt = post.title;
-                postImage.style.maxWidth = '100px'; //CONFIRM OPTIMAL WIDTH
-
-                // Append each element
-                postItem.appendChild(postTitle);
-                postItem.appendChild(content);
-                postItem.appendChild(postImage);
-
-                // Click listener to trigger handlePostClick
-                postItem.addEventListener('click', () => {
-                    handlePostClick(post.id);
-                });
-
-                // Add to the post list
-                postList.appendChild(postItem);
-            });
-        })
-        .catch(error => {
-            console.error('Error fetching posts:', error);
-        });
-}
 
     //2. FETCH BY ID => VIEW POST DETAILS
     function handlePostClick(postId) {
-        fetch(`http://localhost:3000/posts/${postId}`)
+        fetch(`${API_URL}/posts/${postId}`)
             .then(response => response.json())
             .then(post => {
                 const detailContainer = document.querySelector('#post-detail');
                 detailContainer.innerHTML = `
                     <h2>${post.title}</h2>
                     <p><strong>Author:</strong> ${post.author}</p>
+                    <img src="${post.image}" alt="${post.title}" style="max-width: 200px;" />
                     <p>${post.content}</p>
                 `;
             })
@@ -127,7 +123,7 @@ function displayPosts() {
             });
     }
     
-    //3.addNewPostListener
+    //3.Add NewPostListener (LISTEN FOR NEW POST SUBMISSION)
     function addNewPostListener() {
         console.log("Setting up new post listener...");
 
@@ -148,8 +144,10 @@ function displayPosts() {
                 image: document.querySelector('#image').value,
                 content: document.querySelector('#content').value
             };
+            console.log("Submitted post:", newPost);
+
         //4. SEND POST REQUEST TO THE SERVER
-            fetch('http://localhost:3000/posts', {
+            fetch(`${API_URL}/posts`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -158,6 +156,7 @@ function displayPosts() {
             })
             .then(response => response.json())
             .then(createdPost => {
+                console.log("Created post:", createdPost);
                 displayPosts(); ///reload the list
                 form.reset(); //clear the form inputs
             })
@@ -166,6 +165,12 @@ function displayPosts() {
             });
         });
     }
+
+    //Run main() after DOM is fully loaded
+    document.addEventListener('DOMContentLoaded', main);
+
+
+
     //crate a post object
         //    const newPost = {
         //     title: title,
@@ -173,31 +178,31 @@ function displayPosts() {
         //     createdAt: new Date().toISOString()
         //    };
             //add post to UI
-             const postList = document.querySelector('#post-list');
-              const postItem = document.createElement('li');
-              const title = document.createElement('h3');
-              title.textContent = createdPost.title;
+            //  const postList = document.querySelector('#post-list');
+            //   const postItem = document.createElement('li');
+            //   const title = document.createElement('h3');
+            //   title.textContent = createdPost.title;
 
-              const content = document.createElement('p');
-              content.textContent = createdPost.content;
+            //   const content = document.createElement('p');
+            //   content.textContent = createdPost.content;
 
-             const image = document.createElement('img');
-             image.src = createdPost.image;
-              image.alt = createdPost.title;
-              image.style.maxWidth = '100px';
+            //  const image = document.createElement('img');
+            //  image.src = createdPost.image;
+            //   image.alt = createdPost.title;
+            //   image.style.maxWidth = '100px';
 
              // append new post
-             postItem.appendChild(title);
-             postItem.appendChild(content);
-             postItem.appendChild(image);
+            //  postItem.appendChild(title);
+            //  postItem.appendChild(content);
+            //  postItem.appendChild(image);
 
               // listener to view full post
-              postItem.addEventListener('click', () => {
-               handlePostClick(createdPost.id);
-              });
+            //   postItem.addEventListener('click', () => {
+            //    handlePostClick(createdPost.id);
+            //   });
 
-             postList.appendChild(postItem);
+            //  postList.appendChild(postItem);
 
-              resetForm();
+            //   resetForm();
               
     
