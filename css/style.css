@@ -87,3 +87,9 @@ button:hover {
     width: 100%;
   }
 }
+img.film-image {
+  width: 150px;
+  height: 225px; /* 2:3 aspect ratio */
+  object-fit: cover; /* crop the image to fit without stretching */
+  border-radius: 8px;
+}

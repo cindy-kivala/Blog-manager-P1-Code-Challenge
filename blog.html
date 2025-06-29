@@ -10,13 +10,14 @@
    <!-- Add Post Form -->
     <section class="add-post">
       <form id="new-post-form">
-        <input type="text" id="title" placeholder="Title" required />
-        <input type="text" id="author" placeholder="Author" required /><br />
-        <input type="text" id="image" placeholder="Image URL" required /><br />
-        <textarea id="content" placeholder="Write your post here..." required></textarea><br />
+          <input type="text" id="title" placeholder="Film Title" required />
+          <input type="number" id="year" placeholder="Release Year" required /><br />
+          <input type="text" id="image" placeholder="Image URL" required /><br />
+          <input type="text" id="characters" placeholder="Characters (comma-separated)" required /><br />
+          <input type="text" id="genre" placeholder="Genres (comma-separated)" required /><br />
         <div class="form-actions">
-          <button type="submit">Add post</button>
-          <button type="button" onclick="resetForm()">Cancel</button>
+          <button type="submit">Add Film</button>
+          <button type="button" onclick="document.getElementById('new-post-form').reset()">Cancel</button>
         </div>
       </form>
     </section>
@@ -24,21 +25,23 @@
   <!-- Post Details -->
   <section class="disney-details">
     <!-- Post List of all articles -->
-    <ul id="post-list"></ul>
+    <ol id="post-list"></ol>
  
     <!-- Edit Post Form -->
     <form id="editForm" style="display:none;">
-      <input type="text" id="editTitle" placeholder="Title" required>
-      <input type="text" id="editAuthor" placeholder="Author" required><br>
-      <input type="text" id="editImage" placeholder="Image URL" required><br>              
-      <textarea id="editContent" placeholder="Write your post here..." required></textarea><br>
-      <div class="form-actions">
-        <button type="submit">Save Changes</button>
-        <button type="button" id="cancelEditBtn">Cancel</button>
-      </div>
+      <input type="text" id="editTitle" placeholder="Film Title" required />
+      <input type="number" id="editYear" placeholder="Release Year" required /><br />
+      <input type="text" id="editImage" placeholder="Image URL" required /><br />
+      <input type="text" id="editCharacters" placeholder="Characters (comma-separated)" required /><br />
+      <input type="text" id="editGenre" placeholder="Genres (comma-separated)" required /><br />
+      <button type="submit">Save Changes</button>
+      <button type="button" id="cancelEditBtn">Cancel</button>
     </form>
+
+    <div id="post-detail"></div>
   </section>
 </div>
-     <script src = "./src/blog.js"></script>
+
+  <script src = "./src/blog.js"></script>
  </body>
 </html>
