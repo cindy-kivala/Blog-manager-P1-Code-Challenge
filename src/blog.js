@@ -46,7 +46,7 @@ function renderFilmList() {
     li.addEventListener('click', () => renderFilmDetail(film.id));
 
     const postList = document.querySelector('#post-list');
-    
+
     postList.prepend(li);//add new post to the TOP instead of bottom
 
   });
@@ -93,7 +93,7 @@ function setupEventListeners() {
     if (e.target.classList.contains('edit-btn')) {
       e.stopPropagation();
       const id = parseInt(e.target.closest('li').dataset.id);
-      const film = films.find(f => f.id === id);
+      const film = films.find(f => parseInt(f.id) === id);
       showEditForm(film);
     }
 
